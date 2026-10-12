@@ -1,0 +1,180 @@
+<!doctype html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>מאמינים מודרניים — איך מעדכנים את האתר</title>
+<style>
+@font-face{font-family:'Modernist';src:url(fonts/TelAviv-ModernistRegular.woff2) format('woff2');font-weight:400;font-display:swap}
+@font-face{font-family:'Modernist';src:url(fonts/TelAviv-ModernistBold.woff2) format('woff2');font-weight:700;font-display:swap}
+:root{--dark:#1F1C29;--dark2:#15131E;--card:#2D283C;--card2:#211D2B;--copper:#BC6429;--copper2:#D97A3A;--light:#F5F4F1;--muted:#D3DADC;--line:rgba(245,244,241,.12)}
+*{box-sizing:border-box}
+html,body{margin:0;background:var(--dark);color:var(--light);font-family:'Modernist',Arial,sans-serif;font-size:19px;line-height:1.5;-webkit-font-smoothing:antialiased}
+a{color:var(--copper2)}
+header{position:sticky;top:0;z-index:20;background:rgba(31,28,41,.86);backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px);border-bottom:1px solid var(--line);box-shadow:0 6px 24px rgba(245,244,241,.08)}
+.bar{max-width:1080px;margin:0 auto;padding:14px 20px;display:flex;align-items:center;gap:14px;justify-content:space-between}
+.brand{font-weight:700;font-size:20px;color:var(--light);text-decoration:none;display:flex;align-items:center;gap:10px}
+.brand i{display:inline-block;width:10px;height:10px;border-radius:50%;background:var(--copper)}
+.crumbs{font-size:16px;color:var(--muted);display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+.crumbs a{color:var(--muted);text-decoration:none}.crumbs a:hover{color:var(--copper2)}
+.crumbs span.sep{opacity:.5}
+main{max-width:1080px;margin:0 auto;padding:28px 20px 80px}
+h1{font-size:46px;line-height:1.08;margin:18px 0 10px;color:var(--muted)}
+h1 b,h2 b{color:var(--light)}
+h2{font-size:30px;line-height:1.15;margin:40px 0 14px;color:var(--muted)}
+.lead{font-size:21px;color:var(--light);max-width:720px;margin:0 0 26px}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:18px}
+.card{display:block;background:var(--card);border:1px solid rgba(188,100,41,.55);border-radius:0 44px 0 0;padding:26px 24px 24px;color:var(--light);text-decoration:none;transition:transform .2s,border-color .2s;position:relative}
+.card:hover{transform:translateY(-3px);border-color:var(--copper2)}
+.card .k{font-size:15px;color:var(--copper2);margin-bottom:6px}
+.card .t{font-size:26px;font-weight:700;line-height:1.15;margin-bottom:8px}
+.card .d{font-size:17px;color:var(--muted)}
+.card .n{position:absolute;left:18px;top:18px;width:30px;height:30px;border-radius:50%;background:var(--copper);color:#fff;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:16px}
+.big .t{font-size:32px}.big{padding:34px 28px 30px;background:var(--card2)}
+.section{margin-top:44px}
+.step{display:grid;grid-template-columns:1fr 1fr;gap:22px;align-items:start;padding:26px 0;border-top:1px solid var(--line)}
+.step:last-of-type{border-bottom:1px solid var(--line)}
+.step .txt{padding-top:4px}
+.num{display:inline-flex;align-items:center;justify-content:center;width:38px;height:38px;border-radius:50%;background:var(--copper);color:#fff;font-weight:700;font-size:20px;margin-bottom:10px}
+.step h3{font-size:24px;line-height:1.2;margin:0 0 8px}
+.step p{margin:0 0 8px;color:var(--light)}
+.step .hint{font-size:17px;color:var(--muted);background:var(--card2);border-right:3px solid var(--copper);padding:10px 14px;border-radius:6px;margin-top:10px}
+.step .hint b{color:var(--copper2)}
+figure{margin:0;background:#0f0d15;border:1px solid var(--line);border-radius:10px;overflow:hidden;cursor:zoom-in}
+figure img{display:block;width:100%;height:auto}
+figure.zoom{max-width:420px;justify-self:start}
+figure figcaption{font-size:14px;color:var(--muted);padding:6px 10px;border-top:1px solid var(--line)}
+.notice{background:var(--card2);border:1px solid rgba(188,100,41,.5);border-radius:10px;padding:18px 20px;margin:26px 0;font-size:18px}
+.notice b{color:var(--copper2)}
+.btn{display:inline-block;background:linear-gradient(90deg,#8f4416,#c46a2a 55%,#8d4014);color:#fff;text-decoration:none;font-weight:700;padding:12px 24px;border-radius:40px 0 0 40px;font-size:18px;margin-top:10px}
+.btn.ghost{background:transparent;border:1px solid var(--copper);color:var(--light)}
+.foot{color:var(--muted);font-size:14px;text-align:center;margin-top:60px;opacity:.7}
+.nav2{display:flex;gap:10px;flex-wrap:wrap;margin-top:30px}
+#lb{position:fixed;inset:0;background:rgba(0,0,0,.9);display:none;align-items:center;justify-content:center;z-index:50;cursor:zoom-out;padding:20px}
+#lb.on{display:flex}#lb img{max-width:100%;max-height:100%;border-radius:8px;box-shadow:0 20px 60px rgba(0,0,0,.6)}
+ol.quick{padding-right:22px;color:var(--light)}ol.quick li{margin:6px 0}
+@media (max-width:760px){body{font-size:17px}h1{font-size:34px}h2{font-size:26px}.step{grid-template-columns:1fr}figure.zoom{max-width:100%}.card .t{font-size:22px}.big .t{font-size:26px}.lead{font-size:18px}}
+</style>
+</head>
+<body>
+<header><div class="bar"><a class="brand" href="#/"><i></i>מאמינים מודרניים · הדרכה</a><div class="crumbs" id="crumbs"></div></div></header>
+<main id="app"></main>
+<div id="lb" onclick="this.classList.remove('on')"><img alt=""></div>
+<script>
+const IMG = n => `images/${n}.webp`;
+const fig = (n, cap, zoom) => `<figure class="${zoom ? 'zoom' : ''}" onclick="LB('${IMG(zoom ? n + '_zoom' : n)}')"><img src="${IMG(zoom ? n + '_zoom' : n)}" alt="${cap || ''}" loading="lazy">${cap ? `<figcaption>${cap}</figcaption>` : ''}</figure>`;
+function LB(src) { const lb = document.getElementById('lb'); lb.querySelector('img').src = src; lb.classList.add('on'); }
+
+const ENTRY = {
+  title: 'לפני הכול: <b>איך נכנסים לעורך</b>',
+  lead: 'כל העדכונים באתר נעשים מאותו מקום — העורך של אלמנטור. חמש שניות ללמוד, ומשם הכול אותו דבר.',
+  steps: [
+    { h: 'נכנסים לניהול האתר', p: 'בדפדפן כותבים את כתובת האתר ואחריה <b>/wp-admin</b>, ומתחברים עם שם המשתמש והסיסמה שקיבלת.' },
+    { h: 'פותחים את העמוד שרוצים לערוך', p: 'גולשים לעמוד הרגיל באתר (דף הבית, פודקאסט וכו\'). כשמחוברים, יש למעלה סרגל שחור — לוחצים בו על <b>"עריכה באמצעות אלמנטור"</b>.', img: '01_front_adminbar', zoom: true, cap: 'הסרגל השחור למעלה — מופיע רק כשמחוברים' },
+    { h: 'ככה נראה העורך', p: 'העמוד באמצע, הפאנל מימין. לוחצים על משהו בעמוד — ובפאנל מופיע מה שאפשר לשנות בו. לא נוגעים בעיצוב, רק בתוכן.', img: '02_editor_home', cap: 'הפאנל מימין משתנה לפי מה שלוחצים עליו' },
+    { h: 'בסוף — "פרסם"', p: 'הכפתור למעלה משמאל. בלי "פרסם" שום דבר לא נשמר. אחרי הלחיצה אפשר לסגור את העורך.', img: '07_update_button', zoom: true, cap: 'הכפתור "פרסם" — למעלה משמאל', hint: 'עשית שינוי ולא רואים אותו באתר? קודם כול בודקים שלחצת "פרסם", ואז מרעננים את העמוד.' },
+  ]
+};
+
+const GUIDES = {
+  home: { title: 'דף הבית', items: [
+    { id: 'events', k: 'קרוסלת האירועים', t: 'אירוע חדש / עדכון אירוע', d: 'הוספה, שינוי פוסטר ותאריך, סדר ומחיקה',
+      steps: [
+        { h: 'לוחצים על קרוסלת האירועים בעמוד', p: 'בפאנל נפתחת הרשימה <b>"אירועים (גרירה = סדר ההצגה)"</b> — כל שורה היא אירוע.', img: '03_events_widget', zoom: true, cap: 'רשימת האירועים בפאנל' },
+        { h: 'אירוע חדש: "הוספת פריט"', p: 'הכפתור בתחתית הרשימה. נפתח אירוע ריק — ממלאים: שם האירוע, תאריך (רק המספר, למשל 21.8), יום ושעה | מקום, תיאור, טקסט הכפתור וקישור לרכישת כרטיסים.', img: '03b_events_new_item', zoom: true, cap: 'אירוע חדש וריק, מוכן למילוי', hint: 'לעדכן אירוע קיים? לוחצים על השורה שלו — נפתחים אותם שדות.' },
+        { h: 'הפוסטר', p: 'לוחצים על <b>"פוסטר למחשב"</b> → "העלאת קבצים" → בוחרים את התמונה מהמחשב → "בחירה". הפוסטר תמיד מוצג באותן מידות (גבוה מרוחב, 360×467) — לא משנה איזה גודל מעלים.', img: '05_events_poster', zoom: true, cap: 'שדה הפוסטר למחשב ומתחתיו הפוסטר למובייל', hint: '<b>מובייל:</b> יש שדה נפרד "פוסטר למובייל" — שם מעלים גרסה רחבה (פי 2 רוחב מגובה). אם משאירים ריק, בטלפון יוצג הפוסטר הרגיל.' },
+        { h: 'חלון בחירת התמונה', p: 'ככה נראית ספריית המדיה. למעלה "העלאת קבצים" כדי להעלות חדש, ולמטה משמאל <b>"בחירה"</b> לאישור.', img: '06_media_modal', cap: 'ספריית המדיה — העלאה ובחירה' },
+        { h: 'סדר ומחיקה', p: 'גוררים שורה למעלה או למטה — האירוע הראשון ברשימה הוא זה שרואים קודם. מחיקה: ה-X בשורה. ואז <b>"פרסם"</b>.', img: '07_update_button', zoom: true, cap: 'לא לשכוח: פרסם' },
+      ] },
+    { id: 'podcast-home', k: 'קרוסלת הפרקים', t: 'פרק פודקאסט בדף הבית', d: 'איזה פרקים מופיעים בדף הבית — מתג אחד',
+      steps: [
+        { h: 'הפרקים של דף הבית נערכים בעמוד הפודקאסט', p: 'יש רשימה אחת של פרקים, בעמוד "פודקאסט". דף הבית מושך ממנה את מה שמסומן. אז: פותחים את עמוד הפודקאסט בעורך ולוחצים על רשימת הפרקים.', img: '12_podcast_widget', zoom: true, cap: 'רשימת כל הפרקים — בעמוד הפודקאסט' },
+        { h: 'פותחים את הפרק ומדליקים "מוצג בדף הבית"', p: 'לוחצים על שורת הפרק, גוללים לסוף השדות שלו — יש מתג <b>"מוצג בדף הבית"</b>. דולק = הפרק מופיע בקרוסלה בדף הבית. מכבים אצל פרק ישן, מדליקים אצל חדש.', img: '14_podcast_home_toggle', zoom: true, cap: 'המתג בסוף הפרק' },
+        { h: '"פרסם"', p: 'דף הבית מתעדכן לבד — אין צורך לערוך אותו.', img: '07_update_button', zoom: true, hint: 'פרק חדש לגמרי? ראו "פרסום פרק פודקאסט" בעמודים הפנימיים.' },
+      ] },
+    { id: 'lectures', k: 'הרצאות וסדנאות', t: 'הרצאות וסדנאות בדף הבית', d: 'החלפת תמונה, כותרת ופרטים בכרטיס',
+      steps: [
+        { h: 'גוללים ל"הרצאות וסדנאות"', p: 'יש שתי לשוניות — <b>הרצאות</b> ו<b>סדנאות</b>. לוחצים על הלשונית בעמוד כדי לראות את הכרטיסים שלה, ואז עורכים כרטיס-כרטיס.', img: '08_lectures_tabs', cap: 'הלשוניות בעמוד; בפאנל — ההגדרות שלהן (לא נוגעים)' },
+        { h: 'להחליף תמונה', p: 'לוחצים על התמונה בכרטיס → בפאנל <b>"בחירת תמונה"</b> → מעלים ובוחרים. תמונה רוחבית נראית הכי טוב.', img: '09_lecture_image', zoom: true, cap: 'שדה התמונה של הכרטיס' },
+        { h: 'לשנות כותרת, תיאור או פרטים', p: 'לוחצים על הטקסט בכרטיס (הכותרת, המשפט מתחתיה, או "60 דקות / פרונטלי") → הטקסט נפתח בפאנל — מתקנים שם. גודל, צבע ופונט כבר מוגדרים, לא נוגעים.', img: '10_lecture_text', zoom: true, cap: 'הטקסט נערך בפאנל' },
+        { h: '"פרסם"', p: 'וגם בטלפון זה מתעדכן לבד.', img: '07_update_button', zoom: true },
+      ] },
+    { id: 'articles-home', k: 'שלושת הכרטיסים', t: 'החלפת מאמר בדף הבית', d: 'איזה 3 מאמרים מופיעים בדף הבית',
+      steps: [
+        { h: 'קודם המאמר צריך להיות מפורסם', p: 'מאמר חדש מפרסמים כפוסט (ראו "פרסום מאמר"). רק אחרי שהוא באוויר אפשר לשים אותו בדף הבית.' },
+        { h: 'לוחצים על אזור שלושת הכרטיסים', p: 'בפאנל פותחים <b>"שאילתה"</b>. "מקור" כבר על "בחירה ידנית". בשדה <b>"חיפוש ובחירה"</b> מתחילים להקליד את שם המאמר ובוחרים אותו. כדי להוריד מאמר — ה-X הקטן ליד השם שלו בשדה.', img: '11_articles_query', zoom: true, cap: 'השדה שקובע איזה מאמרים בדף הבית' },
+        { h: '"פרסם"', p: 'שלושה מאמרים בדיוק — לא יותר.', img: '07_update_button', zoom: true },
+      ] },
+  ] },
+  inner: { title: 'עמודים פנימיים', items: [
+    { id: 'article', k: 'מאמרים', t: 'פרסום מאמר חדש', d: 'כותרת, טקסט, תמונה ראשית, תקציר — ופרסום',
+      steps: [
+        { h: 'בניהול של וורדפרס: פוסטים → הוסף פוסט', p: 'לא דרך אלמנטור. בתפריט הניהול (הכניסה דרך /wp-admin) לוחצים <b>"פוסטים"</b> ואז <b>"הוסף פוסט"</b>.', img: '17_posts_list', cap: 'רשימת המאמרים והכפתור להוספה' },
+        { h: 'כותרת וטקסט', p: 'למעלה הכותרת, מתחת הטקסט. פשוט כותבים (או מדביקים). אנטר = פסקה חדשה. כותרת משנה בתוך המאמר: לוחצים על ה-+ ובוחרים "כותרת".', img: '18_post_new', cap: 'כותרת, טקסט, ובצד — תמונה ראשית ותקציר' },
+        { h: 'תמונה ראשית', p: 'בצד, בלשונית "פוסט": <b>"בחירת תמונה ראשית"</b> → מעלים → "בחירת תמונה ראשית". זו התמונה שמופיעה בכרטיס המאמר ובראש העמוד שלו.', img: '19_post_sidebar', cap: 'חלון בחירת התמונה הראשית', hint: 'לא לשים את אותה תמונה שוב בתוך הטקסט — היא כבר למעלה.' },
+        { h: 'תקציר', p: 'באותו צד, <b>"הוספת תקציר"</b> — 2–3 משפטים. זה הטקסט שרואים בכרטיס המאמר בדף הבית ובעמוד המאמרים.' },
+        { h: '"פרסום"', p: 'הכפתור הכחול למעלה. המאמר מקבל לבד עמוד בעיצוב של האתר ונכנס לעמוד המאמרים. רוצים אותו גם בדף הבית? ראו "החלפת מאמר בדף הבית".', hint: 'לתקן מאמר קיים: פוסטים → לוחצים על שם המאמר → מתקנים → "עדכון".' },
+      ] },
+    { id: 'episode', k: 'עמוד הפודקאסט', t: 'פרסום פרק פודקאסט', d: 'הוספת פרק לרשימה, קישורים, ודף הבית',
+      steps: [
+        { h: 'פותחים את עמוד הפודקאסט בעורך ולוחצים על הרשימה', p: 'הרשימה <b>"הפרקים (גרירה = סדר ההצגה)"</b> — כל שורה היא פרק.', img: '12_podcast_widget', zoom: true, cap: 'רשימת הפרקים' },
+        { h: '"הוספת פריט" וממלאים', p: 'מספר פרק, שם הפרק, עם מי (למשל: עם משה שרון), תיאור, קישור יוטיוב, ספוטיפיי ואפל. תמונה — אפשר להשאיר ריק, היא נלקחת מיוטיוב לבד.', img: '13_podcast_item', zoom: true, cap: 'השדות של פרק', hint: 'תיאור ארוך? אין בעיה — "קרא עוד" נוצר לבד.' },
+        { h: 'רוצים אותו גם בדף הבית?', p: 'בסוף השדות — מתג <b>"מוצג בדף הבית"</b>. מדליקים.', img: '14_podcast_home_toggle', zoom: true, cap: 'המתג "מוצג בדף הבית"' },
+        { h: 'סדר ופרסום', p: 'גוררים את השורה למקום הנכון (הראשון ברשימה מוצג ראשון), ו<b>"פרסם"</b>.', img: '07_update_button', zoom: true },
+      ] },
+    { id: 'shorts', k: 'עמוד הפודקאסט — למטה', t: 'קטע וידאו (שורט)', d: 'החלפת סרטון ב"קטעי וידאו נבחרים"',
+      steps: [
+        { h: 'גוללים לתחתית עמוד הפודקאסט', p: 'האזור <b>"קטעי וידאו נבחרים"</b>. לוחצים על הסרטון שרוצים להחליף.', img: '16_shorts_section', cap: 'רשת הסרטונים בתחתית העמוד' },
+        { h: 'מדביקים קישור חדש', p: 'בפאנל, בשדה <b>"קישור"</b>, מוחקים את הקישור הישן ומדביקים את הקישור של השורט מיוטיוב (לוחצים "שיתוף" ביוטיוב → "העתק קישור").', img: '15_shorts_video', zoom: true, cap: 'שדה הקישור של הסרטון' },
+        { h: '"פרסם"', p: 'התמונה של הסרטון מתעדכנת לבד מיוטיוב.', img: '07_update_button', zoom: true },
+      ] },
+  ] },
+};
+
+function renderSteps(steps) {
+  return steps.map((s, i) => `<div class="step"><div class="txt"><span class="num">${i + 1}</span><h3>${s.h}</h3><p>${s.p}</p>${s.hint ? `<div class="hint">${s.hint}</div>` : ''}</div>${s.img ? fig(s.img, s.cap, s.zoom) : '<div></div>'}</div>`).join('');
+}
+function home() {
+  return `<h1>איך מעדכנים את <b>האתר</b></h1>
+  <p class="lead">בוחרים מה רוצים לעדכן — ומקבלים בדיוק את השלבים, עם צילומי מסך. כל הדרכה היא 3–5 צעדים.</p>
+  <div class="notice"><b>פעם ראשונה?</b> שווה להתחיל ב<a href="#/entry">איך נכנסים לעורך</a> — דקה אחת, וזה מה שחוזר בכל הדרכה.</div>
+  <div class="grid">
+    <a class="card big" href="#/home"><div class="k">מה מעדכנים ב…</div><div class="t">דף הבית</div><div class="d">אירועים · פרקי פודקאסט · הרצאות וסדנאות · מאמרים</div></a>
+    <a class="card big" href="#/inner"><div class="k">מה מעדכנים ב…</div><div class="t">עמודים פנימיים</div><div class="d">פרסום מאמר · פרק פודקאסט · קטע וידאו</div></a>
+  </div>
+  <h2>כל ההדרכות</h2>
+  <div class="grid">${[...GUIDES.home.items.map(i => ({ ...i, sec: 'home', secT: 'דף הבית' })), ...GUIDES.inner.items.map(i => ({ ...i, sec: 'inner', secT: 'עמודים פנימיים' }))].map(i => `<a class="card" href="#/${i.sec}/${i.id}"><div class="k">${i.secT} · ${i.k}</div><div class="t">${i.t}</div><div class="d">${i.d}</div></a>`).join('')}</div>
+  <h2>שלושה דברים שחוזרים תמיד</h2>
+  <ol class="quick"><li>לוחצים על האלמנט בעמוד — הפאנל מימין משתנה.</li><li>ברשימות (אירועים, פרקים): "הוספת פריט" מוסיף, X מוחק, גרירה משנה סדר.</li><li>בסוף תמיד <b>"פרסם"</b>. בלי זה כלום לא נשמר.</li></ol>`;
+}
+function section(key) {
+  const g = GUIDES[key];
+  return `<h1>${g.title}</h1><p class="lead">מה רוצים לעדכן?</p><div class="grid">${g.items.map((i, n) => `<a class="card" href="#/${key}/${i.id}"><span class="n">${n + 1}</span><div class="k">${i.k}</div><div class="t">${i.t}</div><div class="d">${i.d}</div></a>`).join('')}</div>
+  <div class="nav2"><a class="btn ghost" href="#/">חזרה להתחלה</a><a class="btn ghost" href="#/entry">איך נכנסים לעורך</a></div>`;
+}
+function guide(key, id) {
+  const g = GUIDES[key]; const idx = g.items.findIndex(i => i.id === id); const it = g.items[idx]; if (!it) return home();
+  const next = g.items[idx + 1];
+  return `<div class="crumbs" style="margin-bottom:6px"><a href="#/${key}">${g.title}</a><span class="sep">›</span><span>${it.k}</span></div><h1>${it.t}</h1><p class="lead">${it.d}. לא בטוחים איך נכנסים לעורך? <a href="#/entry">ככה</a>.</p>
+  ${renderSteps(it.steps)}
+  <div class="nav2"><a class="btn ghost" href="#/${key}">חזרה ל${g.title}</a>${next ? `<a class="btn" href="#/${key}/${next.id}">ההדרכה הבאה: ${next.t}</a>` : `<a class="btn" href="#/">להתחלה</a>`}</div>`;
+}
+function entry() {
+  return `<h1>${ENTRY.title}</h1><p class="lead">${ENTRY.lead}</p>${renderSteps(ENTRY.steps)}<div class="nav2"><a class="btn" href="#/home">להדרכות של דף הבית</a><a class="btn ghost" href="#/inner">עמודים פנימיים</a></div>`;
+}
+function route() {
+  const h = location.hash.replace(/^#\/?/, '').split('/').filter(Boolean);
+  const app = document.getElementById('app'); const crumbs = document.getElementById('crumbs');
+  let html, c = '';
+  if (!h.length) html = home();
+  else if (h[0] === 'entry') { html = entry(); c = 'איך נכנסים לעורך'; }
+  else if (GUIDES[h[0]] && !h[1]) { html = section(h[0]); c = GUIDES[h[0]].title; }
+  else if (GUIDES[h[0]]) { html = guide(h[0], h[1]); const it = GUIDES[h[0]].items.find(i => i.id === h[1]); c = `<a href="#/${h[0]}">${GUIDES[h[0]].title}</a><span class="sep">›</span>${it ? it.t : ''}`; }
+  else html = home();
+  app.innerHTML = html + '<p class="foot">מאמינים מודרניים · הדרכת עדכון תוכן · רוני זקן</p>'; crumbs.innerHTML = c; window.scrollTo(0, 0);
+}
+window.addEventListener('hashchange', route); route();
+</script>
+</body>
+</html>
